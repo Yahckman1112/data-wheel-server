@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { New, validate } = require("../model/new");
 const _ = require("lodash");
+const {cloudinary} = require('../utils/cloudinary')
 
 router.get("/", async (req, res) => {
   const news = await New.find();
@@ -19,7 +20,15 @@ router.post("/", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const news = new New(_.pick(req.body, ["title", "new"]));
+  const imagePath= req.body.image
+const result = await cloudinary.uploader.upload(imagePath, {upload_preset:'uploads'})
+
+
+  const news = new New({
+    title: req.body.title,
+    new: req.body.new,
+    image: result.secure_url
+  });
 
   await news.save();
   res.send(news);
