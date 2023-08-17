@@ -10,6 +10,12 @@ router.get("/", async (req, res) => {
   res.send(fruits);
 });
 
+router.get('/:id', async(req,res)=>{
+  const fruits = await Fruit.findById(req.params.id)
+  if(!fruits) return res.status(400).send('The fruit is not available')
+  res.send(fruits)
+})
+
 router.post("/", async (req, res) => {
 
   const { error } = validate(req.body);

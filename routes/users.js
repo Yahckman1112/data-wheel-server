@@ -16,7 +16,7 @@ router.post("/", async (req, res) => {
   if (user) return res.status(400).send("User already registered");
 
   user = new User(
-    _.pick(req.body, ["firstName", "lastName", "email", "phone", "password"])
+    _.pick(req.body, ["name", "email", "phone", "password", "address"])
   );
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
@@ -24,7 +24,10 @@ router.post("/", async (req, res) => {
 
   const token = user.generateAuthToken();
 
-  res.header("x-auth-token", token).send(_.pick(user,['firstName', 'lastName','email', 'phone', ]));
+  res
+    .header("x-auth-token", token)
+    .header("access-control-expose-headers", "x-auth-token")
+    .send(_.pick(user, ["name", "address", "email", "phone"]));
 });
 
 module.exports = router;
