@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 const axios = require('axios')
 const Joi = require('joi')
+// const config = require('config')
 
-
+// console.log();
 
 function validate(userInfo){
   const schema = Joi.object({
@@ -16,7 +17,7 @@ function validate(userInfo){
 }
 
 
-const apiKey = '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';
+const apiKey = process.env.MAIL_API_KEY ;
 const apiBaseUrl = 'https://api.sendinblue.com/v3';
 
 
@@ -25,8 +26,6 @@ router.get("/", (req, res) => {
 });
 
 // Adeniran081
-// const apiKey='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'
-
 
 
 router.post("/",async (req, res) => {
@@ -37,8 +36,8 @@ router.post("/",async (req, res) => {
 const emailData = {
  
 
-  sender: { email: 'adeniranyaqubtest@gmail.com', name: 'Yahckman' },
-  to: [{ email: req.body.email, name: req.body.name }],
+  sender: { email: req.body.email, name: req.body.name },
+  to: [{ email: 'adeniranyaqubtest@gmail.com', name: 'Yahckman' }],
   subject: req.body.subject,
   htmlContent: req.body.message
 };
