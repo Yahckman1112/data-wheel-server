@@ -1,5 +1,6 @@
 
 {
-"db":"mongodb+srv://adeniranyaqub565:adeniran@cluster0.rvy8scb.mongodb.net/fruity?retryWrites=true&w=majority"
+"db-1":"mongodb+srv://adeniranyaqub565:adeniran@cluster0.rvy8scb.mongodb.net/fruity?retryWrites=true&w=majority",
+"db":"mongodb://127.0.0.1:27017/data-wheel"
 }
 

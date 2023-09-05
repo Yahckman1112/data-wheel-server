@@ -4,8 +4,9 @@ const { User, validate } = require("../model/user");
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
 
-router.get("/", (req, res) => {
-  res.send("Users");
+router.get("/",async (req, res) => {
+  const users = await User.find().sort('1')
+  res.send(users);
 });
 
 router.post("/", async (req, res) => {

@@ -8,11 +8,12 @@ const userSchema = new mongoose.Schema({
   phone: { type: Number, required: true },
   password: { type: String, required: true },
   address: { type: String, required: true },
+  isAdmin:{type:Boolean}
 });
 
 userSchema.methods.generateAuthToken = function () {
   const token = jwt.sign(
-    { _id: this._id, name: this.name, email: this.email, phone: this.phone },
+    { _id: this._id, name: this.name, email: this.email,  phone: this.phone, isAdmin:this.isAdmin },
     process.env.JWT_PRIVATE_KEY
   );
 
