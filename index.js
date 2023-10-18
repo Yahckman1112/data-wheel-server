@@ -33,7 +33,11 @@ app.use('/api/mail', mail)
 
 
 
-const db = config.db;
+
+
+
+// const db = config.db;
+const db = process.env.MONGO_URI
 
 mongoose
   .connect(db, {

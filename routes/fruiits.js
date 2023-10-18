@@ -6,9 +6,9 @@ const {cloudinary} = require('../utils/cloudinary')
 
 router.get("/", async (req, res) => {
   const fruits = await Fruit.find();
-
   res.send(fruits);
 });
+
 
 router.get('/:id', async(req,res)=>{
   const fruits = await Fruit.findById(req.params.id)
