@@ -30,10 +30,6 @@ app.use("/api/category", category);
 app.use("/api/fruits", fruits);
 app.use('/api/mail', mail)
 
-app.get('/', (req,res)=>{
-  res.send('okay')
-})
-
 
 
 
